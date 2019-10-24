@@ -1,0 +1,23 @@
+.play-overlay {
+  z-index: 99999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 12px 24px;
+  padding-bottom: 0px;
+  background: rgba(0, 123, 255)
+    url("https://cdn.glitch.com/3ae11e53-1622-45cb-8645-280e6b572173%2Fwhite-play-256.png?v=1571914514374")
+    center no-repeat;
+  background-size: 40px 40px;
+}
+.play-overlay:hover {
+  background: rgba(0, 0, 0, 0.2)
+    url("https://cdn.glitch.com/3ae11e53-1622-45cb-8645-280e6b572173%2Fwhite-play-256.png?v=1571914514374")
+    center no-repeat;
+  background-size: 40px 40px;
+}

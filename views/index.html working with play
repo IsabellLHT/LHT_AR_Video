@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <title>Video AR</title>
+    <meta name="viewport" content="width=device-width,height=device-height" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"></script>
+
+    <!--
+    <script>
+      // Invitation Video Handler
+      AFRAME.registerComponent("video-vidhandler", {
+        init: function() {
+          console.log("video init entered");
+          this.toggle = false;
+          this.vid = document.querySelector("#invitation");
+          this.vid.pause();
+        },
+        tick: function() {
+          if (this.el.object3D.visible == true) {
+            if (!this.toggle) {
+              this.toggle = true;
+              this.vid.play();
+            }
+          } else {
+            this.toggle = false;
+            this.vid.pause();
+          }
+        }
+      });
+    </script>
+-->
+
+    <!-- <script src="aframe-ar.js"></script> use this (v1.6) if this demo ever breaks-->
+  </head>
+  <body>
+    <a id="playButton" onclick="play('alpha')"
+      ><div class="btn btn-primary play-overlay menu-overlay"></div
+    ></a>
+    <a-scene
+      id="scene"
+      arjs="trackingMethod: best; debugUIEnabled: false;"
+      vr-mode-ui="enabled: false"
+      ar-template
+    >
+      <a-assets>
+        <video
+          id="alpha"
+          autoplay
+          loop="true"
+          src="https://cdn.glitch.com/3ae11e53-1622-45cb-8645-280e6b572173%2FAlphaTest.webm?v=1571914492700"
+          preload="none"
+          response-type="arraybuffer"
+          crossorigin
+          webkit-playsinline
+          playsinline
+          controls
+        ></video>
+      </a-assets>
+
+      <!-- Using the asset management system. -->
+
+      <a-marker-camera preset="hiro">
+        <a-video id="vid" rotation="0 0 0" src="#alpha">
+          <video scale="1 1 1" src="#source"></video
+        ></a-video>
+      </a-marker-camera>
+    </a-scene>
+  </body>
+
+  <script>
+    function play(id) {
+      var aVideoAsset = document.querySelector("#" + id);
+      aVideoAsset.play().catch(function(error) {
+        aVideoAsset.pause();
+        hideOrShow("playButton");
+      });
+      aVideoAsset.setAttribute("loop", "false");
+      hideOrShow("playButton");
+    }
+    function hideOrShow(id) {
+      var x = document.getElementById(id);
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  </script>
+
+
+</html>
